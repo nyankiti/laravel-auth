@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+//read token  sjBLoKdq4TnggufiwmqMsZLEnRWoFvXiYUiDImC6
+Route::middleware('auth:sanctum')->get('/articles', function (Request $request) {
+    if($request->user()->tokenCan('read')){
+        return response('hey');
+    }else{
+        return response('unauthorized');
+    }
 });

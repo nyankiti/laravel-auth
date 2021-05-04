@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //read token  sjBLoKdq4TnggufiwmqMsZLEnRWoFvXiYUiDImC6
-Route::middleware('auth:sanctum')->get('/articles', function (Request $request) {
-    if($request->user()->tokenCan('read')){
-        return response('hey');
-    }else{
-        return response('unauthorized');
-    }
-});
+// Route::middleware('auth:sanctum')->get('/articles', function (Request $request) {
+//     if($request->user()->tokenCan('read')){
+//         return response('hey');
+//     }else{
+//         return response('unauthorized');
+//     }
+// });
+
+Route::get('/articles', [ArticlesController::class, 'index']);

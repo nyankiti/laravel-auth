@@ -46,6 +46,8 @@ class ArticlesTableSeeder extends Seeder
             ]
         ];
 
+        // はてなブログはdatestring型で日付を扱っているので、timestampではなく、datestringを使う
+        // Carbonインスタンスはデフォルトでdatestring型を返す
         $now = Carbon::now();
         foreach ($params as $param) {
             $param['created_at'] = $now;

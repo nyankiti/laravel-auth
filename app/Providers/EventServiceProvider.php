@@ -7,6 +7,12 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use App\Events\BlogPostCreated;
+use App\Events\BlogPostCommented;
+use App\Listeners\BlogPostCreatedLogging;
+use App\Listeners\BlogPostCommentedLogging;
+use App\Listeners\BlogPostCommentedNotification;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -17,6 +23,14 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        // ブログ記事についてのeventとlistenerを登録
+        BlogPostCreated::class => [
+            BlogPostCreatedLogging::class,
+        ],
+        BlogPostCommented::class => [
+            BlogPostCommentedLogging::class,
+            BlogPostCommentedNotification::class
         ],
     ];
 

@@ -13,7 +13,11 @@ class Article extends Model
      *
      * @var array
      */
+    // table名を指定
+    protected $table = 'articles';
+
+    // カラムを指定
     protected $fillable = [
-        'title',
+        'id', 'title', 'author', 'imageUrl', 'html', 'created_at', 'updated_at'
     ];
 }
